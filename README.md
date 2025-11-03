@@ -11,6 +11,33 @@
 
 ## Cài đặt Gitlab server
 
+  1. Nên tạo 1 server khác cho gitlab server:
+
+    - vì gitlab server sẽ sử dụng nhiều port khác
+    
+    - snapshot từ ubuntu origin , sau khi snapshot thì vào /etc/netplan/00-installer-config.yaml config lại cấu hình và đổi tên hostname cho server
+  
+  2. Search gitlab ee packages và cài đặt :
+
+    1. Tải repo :
+
+      Sử dụng câu lệnh : curl -s https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+
+    2. Download : 
+
+      Sử dụng câu lệnh : apt-get install gitlab-ee=14.4.1-ee.0
+
+    3. Thêm hosts để có thể truy cập server qua DNS
+
+      - 192.168.222.131 git.quangdm.test
+
+    4. Mở file /etc/gitlab/gitlab.rb
+
+      - sửa địa chỉ external_url 'http://git.quangdm.test'
+
+    5. Chạy câu lệnh :
+
+      gitlab-ctl reconfigure
 
 
 ## Gitlab CI/Continuos Deployment
@@ -19,7 +46,7 @@
     - Gitlab runner
 
   2. Viết file cấu hình công việc:
-  
+
     - Viết trực tiếp trong dự án , định dạng file : .gitlab-ci.yml
 
   **Bước 1 : Cài đặt gitlab-runner:**
