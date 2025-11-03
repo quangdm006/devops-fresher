@@ -69,3 +69,60 @@
     2. Sử dụng câu lệnh : curl -L "https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh" | sudo bash , để add repo gitlab
 
     3. Cài đặt phiên bản mới nhất của gitlab-runner: sudo apt install gitlab-runner và apt-cache madison gitlab-runner
+
+## DOCKER
+
+  1. là nền tảng ảo hóa cấp container cho phép người phát triển đống gói ứng dụng và tất cả các phụ thuộc của nó vào 1 container
+  
+  2. Cài đặt và sử dụng docker
+   
+    - tạo thư mục /tools để lưu trữ các công cụ
+
+    - tạo thư mục docker trong tools
+
+    - tạo file install-docker.sh
+
+    - lên dockerhub : tìm kiếm image và pull về : docker pull tên_image
+
+    - cách xem cac images đang có : docker images
+
+    - sử dụng câu lệnh : docker run --name ubuntu -it ubuntu:22.04 để đặt tên cho images và truy cập vào môi trường của nó - docker run chỉ sử dụng được 1 lần duy nhất khi khởi tạo container, sau khi tắt muốn truy cập thì dùng lệnh docker exec -it tên_container
+
+    - thoát khỏi môi trường container : exit
+
+    - docker ps : dùng để xem trạng thái các container đang chạy
+
+    - docker ps -a : xem tất cả các container đang có trên server
+
+    - khởi động 1 container : docker start name_container hoặc id_container
+
+    - truy cập lại môi trường container : docker exec -it ubuntu bash
+
+    - câu lệnh : docker run --name nginx -dp 9999:80 nginx
+
+    - để dừng container : docker stop name-container
+
+    - xóa container : docker rm tên-container
+
+  3. Cách dockerize các dự án
+
+    - Tư duy viết docker file:
+
+      1. Dockerfile để làm gì?
+        - đưa source code vào container 
+        - cài đặt công cụ để chạy dự án
+
+      2. Dockerfile commands:
+        - from + tên_docker-image, ví dụ : from node:20
+        - workdir,  ví dụ workdir /app
+        - copy : copy soruce code vào container , ví dụ copy ..
+        - run 
+        - env : khai báo các biến
+        - expose : định nghĩa ứng dụng trong container sẽ được chạy ở port nào , ví dụ expose 80
+        - cmd 
+        - entrypoint
+
+      3. khi viết dockerfile lưu ý:
+        - không sử dụng root user
+        - chọn base image phù hợp 
+        - sử dụng multiple stage
