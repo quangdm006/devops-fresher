@@ -39,6 +39,19 @@
 
       gitlab-ctl reconfigure
 
+    6. Vào máy windows : 
+    
+    C:\Windows\System32\drivers\etc\hosts cấu hình hosts
+
+    - Tài khoản mặc định : root 
+    - mật khẩu sử dụng câu lệnh : cat /etc/gitlab/initial_root_password
+
+    7. Edit profile để đổi mật khẩu
+
+## Gitworkflow
+
+  - 
+
 
 ## Gitlab CI/Continuos Deployment
   1. Cài đặt công cụ tự động:
